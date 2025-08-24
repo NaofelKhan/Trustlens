@@ -7,7 +7,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="bg-purple-600 text-white py-16">
+    <section className="bg-purple-600 text-white py-24 mb-36">
       <div className="w-3/4 mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 text-center">
         {stats.map((stat, idx) => (
           <div key={idx}>
