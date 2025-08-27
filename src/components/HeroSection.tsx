@@ -12,6 +12,7 @@ const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 
 export default function HeroSection() {
+
   return (
     <section className="relative h-screen  bg-[url(/bg-hero.jpg)] bg-cover bg-no-repeat text-white">
 
@@ -37,7 +38,6 @@ export default function HeroSection() {
           </p>
         </div>
       </div>
-
       {/* Search Bar */}
       <div className={`flex justify-center pb-4 mb-4 ${montserrat.className}`}>
           <div className="relative w-1/2 mb-6">

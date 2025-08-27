@@ -1,5 +1,8 @@
 import {Outfit, Montserrat} from 'next/font/google';
 import ContactBento from '@/components/ContactBento';
+
+
+
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 export default function ContactUsPage() {
