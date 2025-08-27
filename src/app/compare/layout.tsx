@@ -7,7 +7,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ComparePageHero />
         {children}
       </body>
     </html>
