@@ -22,7 +22,7 @@ export default function HeroSection() {
             colors={["#701CF5", "#118D81","#701CF5", "#118D81","#701CF5"]}
             animationSpeed={3}
             showBorder={false}
-            className={`custom-class pb-4 mb-4 ${montserratbold.className}`}
+            className={`custom-class ${montserratbold.className}`}
           >
             AI-Powered Insights for Every Product.
           </GradientText>

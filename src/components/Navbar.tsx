@@ -13,7 +13,7 @@ const outfitbold = Outfit({ subsets: ['latin'], weight: '600' });
 const navItems = [
   { name: "Compare", href: "/compare" , icon: <ShoppingCart size={18} />},
   { name: "Price Alerts", href: "/pricealert", icon: <Bell size={18} /> },
-  { name: "Contact Us", href: "/contact", icon: <Phone size={18} /> },
+  { name: "Contact Us", href: "/contactus", icon: <Phone size={18} /> },
 ];
 export default function FloatingNavbar() {
   const pathname = usePathname();
