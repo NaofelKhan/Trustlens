@@ -1,3 +1,5 @@
 export default function ComparePage() {
-  return (<div className="text-2xl font-bold">Hello from Compare</div>);
+  return (
+  <div className="flex flex-col items-center justify-center">Please add product to see results</div>
+);
 }

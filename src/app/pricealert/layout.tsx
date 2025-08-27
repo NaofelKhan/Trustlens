@@ -1,11 +1,9 @@
-import ComparePageHero from "@/components/ComparePageHero";
-
-
+import PriceAlertHero from "@/components/PriceAlertHero";
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
   return (
     <>
-        <ComparePageHero />
+        <PriceAlertHero />
         {children}
     </>
   );

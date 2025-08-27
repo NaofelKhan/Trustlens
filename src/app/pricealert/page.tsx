@@ -1,3 +1,3 @@
 export default function PriceAlertPage() {
-  return (<div className="text-2xl font-bold">Hello from Price Alert</div>);
+  return (<div className="flex flex-col items-center justify-center">No current Price Alerts to show...</div>);
 }
