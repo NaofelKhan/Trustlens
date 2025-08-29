@@ -3,7 +3,7 @@ import "./globals.css";
 import FloatingNavbar from "@/components/Navbar";
 import Footer from "@/components/Footer"
 ;
-
+import { AuthProvider } from "../components/AuthContext";
 
 export const metadata: Metadata = {
   title: "Welcome to TrustLens",
@@ -20,9 +20,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <FloatingNavbar />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <FloatingNavbar />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

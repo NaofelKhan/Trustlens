@@ -1,12 +1,10 @@
 'use client'
 
-import { useState } from "react";
-import LoginModal from "@/components/LoginModal";
 import { CircleArrowRight,ShoppingCart,Bell,Phone   } from "lucide-react";
 import Link from "next/link";
 import {Outfit,Montserrat} from 'next/font/google'
 import { usePathname } from "next/navigation";
-
+import { useAuth } from "../components/AuthContext";
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const outfitbold = Outfit({ subsets: ['latin'], weight: '600' });
@@ -19,7 +17,7 @@ const navItems = [
 ];
 export default function FloatingNavbar() {
   const pathname = usePathname();
-  const [isLoginOpen, setIsLoginOpen] = useState(false);  
+  const { openLogin, openRegister, user } = useAuth();
   return(
     <>
       <nav className="fixed top-5 left-1/2 -translate-x-1/2 w-10/12 flex justify-between items-center px-2 py-2 rounded-full bg-white/25 backdrop-blur-xs shadow-lg z-50">
@@ -46,8 +44,8 @@ export default function FloatingNavbar() {
           })}
         </div>
         <div className={`flex items-center space-x-4 ${montserrat.className}`}>
-            <h2 onClick={() => setIsLoginOpen(true)} className={`focus:text-white`}>Login</h2>
-            <button className={`bg-[#701CF5] text-white px-4 py-2 rounded-full hover:bg-blue-600 transition flex items-center gap-2 ${montserrat.className}`}>
+            <h2 onClick={openLogin} className={`focus:text-white`}>Login</h2>
+            <button onClick={openRegister} className={`bg-[#701CF5] text-white px-4 py-2 rounded-full hover:bg-blue-600 transition flex items-center gap-2 ${montserrat.className}`}>
                 Register
                 <CircleArrowRight />
             </button>

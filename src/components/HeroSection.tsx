@@ -1,7 +1,10 @@
+'use client'
+
 import { Search } from "lucide-react";
 import GradientText from './GradientText';
 import {Montserrat,Outfit} from 'next/font/google'
-
+import LoginModal from "@/components/LoginModal";
+import RegisterModal from "@/components/RegisterModal";
 
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
@@ -12,7 +15,6 @@ const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 
 export default function HeroSection() {
-
   return (
     <section className="relative h-screen  bg-[url(/bg-hero.jpg)] bg-cover bg-no-repeat text-white">
 
@@ -52,6 +54,8 @@ export default function HeroSection() {
               </button>
           </div>
       </div>
+      <LoginModal />
+      <RegisterModal />
       {/* Suggestions */}
       <div className={`flex flex-wrap justify-center gap-3 items-center ${montserrat.className}`}>
         <h2 className="text-lg text-black">Popular Searches:</h2>
