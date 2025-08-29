@@ -6,7 +6,6 @@ import {Montserrat,Outfit} from 'next/font/google'
 import LoginModal from "@/components/LoginModal";
 import RegisterModal from "@/components/RegisterModal";
 
-
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '400' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });

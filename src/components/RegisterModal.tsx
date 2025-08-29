@@ -18,8 +18,8 @@ const outfitbold = Outfit({ subsets: ['latin'], weight: '600' });
 
 
 export default function RegisterModal() {
-  
-  const { registerModal, closeModals, register } = useAuth();
+
+  const { registerModal, openLogin, closeRegisterModal, register } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +43,7 @@ export default function RegisterModal() {
           >
             {/* Close Button */}
             <button
-              onClick={closeModals}
+              onClick={closeRegisterModal}
               className="absolute top-3 right-3 text-black hover:text-red-500"
             >
               <X size={20} />
@@ -121,9 +121,9 @@ export default function RegisterModal() {
             {/* Footer */}
             <p className={`text-sm text-center text-gray-600 mt-4 ${montserrat.className}`}>
               Already have an account?{" "}
-              <a href="/login" className={`text-green-600 hover:underline ${montserrat.className}`}>
+              <span onClick={() => { closeRegisterModal(); openLogin(); }} className={`text-green-600 hover:underline ${montserrat.className}`}>
                 Login
-              </a>
+              </span>
             </p>
           </motion.div>
         </motion.div>

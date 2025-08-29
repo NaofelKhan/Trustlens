@@ -1,5 +1,6 @@
 // components/LoginModal.tsx
 "use client";
+
 import { useAuth } from "../components/AuthContext";
 import { useState } from "react";
 import {Montserrat,Outfit} from 'next/font/google'
@@ -14,9 +15,10 @@ const outfitbold = Outfit({ subsets: ['latin'], weight: '600' });
 
 
 export default function LoginModal() {
-  const { loginModal, closeModals, login } = useAuth();
+  const { loginModal, closeLoginModal, login, openRegister, user} = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   if (!loginModal) return null;
 
@@ -37,7 +39,7 @@ export default function LoginModal() {
           >
             {/* Close Button */}
             <button
-              onClick={closeModals}
+              onClick={closeLoginModal}
               className="absolute top-3 right-3 text-gray-500 hover:text-black"
             >
               <X size={20} />
@@ -102,9 +104,9 @@ export default function LoginModal() {
             {/* Footer */}
             <p className={`text-sm text-center text-gray-600 mt-4 ${montserrat.className}`}>
               Don't have an account?{" "}
-              <a href="/signup" className="text-purple-600 hover:underline">
+              <span onClick={() => { closeLoginModal(); openRegister(); }} className="text-purple-600 hover:underline">
                 Sign up
-              </a>
+              </span>
             </p>
           </motion.div>
         </motion.div>

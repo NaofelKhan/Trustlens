@@ -7,7 +7,8 @@ type AuthContextType = {
   registerModal: boolean;
   openLogin: () => void;
   openRegister: () => void;
-  closeModals: () => void;
+  closeLoginModal: () => void;
+  closeRegisterModal: () => void;
   login: (email: string, password: string) => void;
   register: (name: string, email: string, password: string) => void;
   user: string | null;
@@ -26,8 +27,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const openLogin = () => setLoginModal(true);
   const openRegister = () => setRegisterModal(true);
-  const closeModals = () => {
+  const closeLoginModal = () => {
     setLoginModal(false);
+  };
+  const closeRegisterModal = () => {
     setRegisterModal(false);
   };
 
@@ -39,7 +42,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (foundUser) {
       setUser(foundUser.name);
       alert("✅ Logged in as " + foundUser.name);
-      closeModals();
+      closeLoginModal();
     } else {
       alert("⚠️ User not found, please register!");
       setLoginModal(false);
@@ -51,7 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     fakeUsers.push({ name, email, password });
     setUser(name);
     alert("🎉 Registered successfully!");
-    closeModals();
+    closeLoginModal();
   };
 
   return (
@@ -61,7 +64,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         registerModal,
         openLogin,
         openRegister,
-        closeModals,
+        closeLoginModal,
+        closeRegisterModal,
         login,
         register,
         user,
