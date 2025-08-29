@@ -4,6 +4,8 @@ import FloatingNavbar from "@/components/Navbar";
 import Footer from "@/components/Footer"
 ;
 import { AuthProvider } from "../components/AuthContext";
+import LoginModal from "@/components/LoginModal";
+import RegisterModal from "@/components/RegisterModal";
 
 export const metadata: Metadata = {
   title: "Welcome to TrustLens",
@@ -22,6 +24,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <AuthProvider>
           <FloatingNavbar />
+          <LoginModal />
+          <RegisterModal />   
           {children}
           <Footer />
         </AuthProvider>
