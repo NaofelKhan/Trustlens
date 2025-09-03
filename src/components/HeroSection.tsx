@@ -3,6 +3,8 @@
 import { Search } from "lucide-react";
 import GradientText from './GradientText';
 import {Montserrat,Outfit} from 'next/font/google'
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '400' });
@@ -12,6 +14,23 @@ const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 
 export default function HeroSection() {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<any[]>([]);
+  const router = useRouter();
+
+  async function handleSearchAndSubmit() {
+    if (!query.trim()) return;
+
+    // Fetch results
+    const res = await fetch(`/api/analyze?q=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    setResults(data);
+
+    // Redirect to results page
+    router.push(`/analyze?q=${encodeURIComponent(query)}`);
+  }
+
+
   return (
     <section className="relative h-screen  bg-[url(/bg-hero.jpg)] bg-cover bg-no-repeat text-white">
 
@@ -44,9 +63,11 @@ export default function HeroSection() {
               <input
               type="text"
               placeholder="Search something..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               className="w-full rounded-full py-3 pl-8 pr-20 text-[#bdbdbd] focus:outline-none shadow-lg bg-white"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white px-12 py-2 rounded-full flex items-center gap-2 shadow-md">
+              <button type="submit"  onClick={handleSearchAndSubmit}className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white px-12 py-2 rounded-full flex items-center gap-2 shadow-md">
               Search and Analyze
               </button>
           </div>

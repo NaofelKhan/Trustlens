@@ -4,8 +4,6 @@ import PriceSummary from '@/components/PriceSummary';
 
 
 
-
-
 export default function CompareResultPage() {
   return (
     <>
