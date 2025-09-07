@@ -15,17 +15,10 @@ const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 export default function HeroSection() {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<any[]>([]);
   const router = useRouter();
 
   async function handleSearchAndSubmit() {
     if (!query.trim()) return;
-
-    // Fetch results
-    const res = await fetch(`/api/analyze?q=${encodeURIComponent(query)}`);
-    const data = await res.json();
-    setResults(data);
-
     // Redirect to results page
     router.push(`/analyze?q=${encodeURIComponent(query)}`);
   }

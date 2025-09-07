@@ -1,12 +1,12 @@
 // src/lib/db.ts
 import { Pool } from "pg";
-
+const DATABASE_URL='postgresql://neondb_owner:npg_CJl7kDwxK2He@ep-fragrant-union-a1p5wld5-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
 // if (!process.env.DATABASE_URL) {
 //   throw new Error("DATABASE_URL is not set in .env.local");
 // }
 
 export const pool = new Pool({
-  connectionString: 'postgresql://neondb_owner:npg_CJl7kDwxK2He@ep-hidden-cherry-a1exx0b9-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
+  connectionString: DATABASE_URL,
 });
 
 // Simple helper to run queries

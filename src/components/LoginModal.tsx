@@ -18,7 +18,22 @@ export default function LoginModal() {
   const { loginModal, closeLoginModal, login, openRegister, user} = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [message, setMessage] = useState("");
+  const handleLoginup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log({ email, password});
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password}),
+    });
+    const data = await res.json();
+    setMessage(data.error || data.message);
+    if (res.ok) {
+      // Optionally close the modal or redirect the user
+      closeLoginModal();
+    }
+  };
 
   if (!loginModal) return null;
 
@@ -63,7 +78,7 @@ export default function LoginModal() {
                 Welcome back! Please login to your account.
               </p>
             </div>
-
+            {message && <p className="text-red-500 text-sm">{message}</p>}
             {/* Form */}
             <form className="mt-6 space-y-4">
               <div>
@@ -94,7 +109,7 @@ export default function LoginModal() {
 
               <button
                 type="submit"
-                onClick={() => login(email, password)}
+                onClick={handleLoginup}
                 className={`w-full bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white rounded-lg py-2 font-medium  hover:bg-gradient-to-l transition ${montserratbold.className}`}
               >
                 Login

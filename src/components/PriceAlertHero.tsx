@@ -1,12 +1,28 @@
+'use client'
+
+
+
 import { Outfit,Montserrat } from "next/font/google";
 import AlertsAndSettings from "./AlertsAndSettings";
 import GradientText from "./GradientText";
 import { SquarePlus } from "lucide-react";
-
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '400' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 const PriceAlertHero = () => {
+  const [query, setQuery] = useState("");
+  const router = useRouter();
+
+  async function AddPriceAlert() {
+    if (!query.trim()) return;
+    // Redirect to results page
+    router.push(`/pricealert/resultpage?q=${encodeURIComponent(query)}`);
+  }  
+  
+  
+  
   return (
 <>
     <section className="relative bg-[url(/bg-hero.jpg)] bg-cover bg-no-repeat h-[calc(100vh-80px)]">
@@ -25,10 +41,19 @@ const PriceAlertHero = () => {
         <p className="text-sm text-gray-200 mb-10">
           Get notified when the price drops on your favorite products.
         </p>
-        <button className="flex items-center gap-2 bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white px-12 py-2 rounded-full shadow-md">
-          <SquarePlus color="#ffffff" size={18}/>
-          Add Price Alert
-        </button>
+        <div className="relative w-1/3 mb-6">
+          <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search something..."
+          className="w-full rounded-full py-3 pl-8 pr-20 text-[#bdbdbd] focus:outline-none shadow-lg bg-white"
+          />        
+          <button onClick={AddPriceAlert} className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2 bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white px-12 py-2 rounded-full shadow-md">
+            <SquarePlus color="#ffffff" size={18}/>
+            Add Price Alert
+          </button>
+        </div>
       </div>
 
     </section>

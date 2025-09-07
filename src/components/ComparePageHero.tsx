@@ -19,9 +19,9 @@ export default function ComparePageHero() {
       </div>
       {/* Search Bar */}
       <div className="flex flex-col items-center justify-center pt-10">
-        <SearchBar />
-        <SearchBar />
-        <SearchBar />
+        <SearchBar paramKey="q1"/>
+        <SearchBar paramKey="q2"/>
+        <SearchBar paramKey="q3"/>
       </div>
     </section>
   );

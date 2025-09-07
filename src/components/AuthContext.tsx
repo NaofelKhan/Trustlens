@@ -10,15 +10,13 @@ type AuthContextType = {
   closeLoginModal: () => void;
   closeRegisterModal: () => void;
   login: (email: string, password: string) => void;
-  register: (name: string, email: string, password: string) => void;
+  register: (name: string, username: string, email: string, password: string) => void;
   user: string | null;
 };
 
+const fakeUsers: { name: string; username: string; email: string; password: string }[] = [];
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const fakeUsers: { name: string; email: string; password: string }[] = [
-  { name: "Alen", email: "alen@example.com", password: "1234" },
-];
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loginModal, setLoginModal] = useState(false);
@@ -50,8 +48,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const register = (name: string, email: string, password: string) => {
-    fakeUsers.push({ name, email, password });
+  const register = (name: string, username: string,email: string, password: string) => {
+    fakeUsers.push({ name, username, email, password });
     setUser(name);
     alert("🎉 Registered successfully!");
     closeLoginModal();

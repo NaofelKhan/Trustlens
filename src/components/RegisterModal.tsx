@@ -1,13 +1,15 @@
 // components/RegisterModal.tsx
 "use client";
+
+
+
+
 import { useAuth } from "../components/AuthContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import GradientText from './GradientText';
 import {Montserrat,Outfit} from 'next/font/google'
-
-
 
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
@@ -23,7 +25,24 @@ export default function RegisterModal() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log({ name, email, password,username });
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password,username }),
+    });
+    const data = await res.json();
+    setMessage(data.error || data.message);
+    if (res.ok) {
+      // Optionally close the modal or redirect the user
+      closeRegisterModal();
+      openLogin();
+    }
+  };
   if (!registerModal) return null;
 
   return (
@@ -67,21 +86,33 @@ export default function RegisterModal() {
                 Join thousands of smart shoppers
               </p>
             </div>
-
+            {message && <p>{message}</p>}
             {/* Form */}
             <form className="mt-6 space-y-4">
               <div>
                 <label className={`text-sm font-medium text-black ${montserrat.className}`}>
-                  Username
+                  Full Name
                 </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={`mt-1 w-full rounded-lg border border-gray-300 p-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-500 outline-none ${montserrat.className} text-black`}
-                  placeholder="Enter your username"
+                  placeholder="Enter your full name"
                 />
               </div>
+              <div>
+                <label className={`text-sm font-medium text-black ${montserrat.className}`}>
+                  UserName
+                </label>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className={`mt-1 w-full rounded-lg border border-gray-300 p-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-500 outline-none ${montserrat.className} text-black`}
+                  placeholder="Enter your username"
+                />
+              </div>              
 
               <div>
                 <label className={`text-sm font-medium text-black ${montserrat.className}`}>
@@ -111,7 +142,7 @@ export default function RegisterModal() {
 
               <button
                 type="submit"
-                onClick={() => register(name, email, password)}
+                onClick={handleSignup}
                 className={`w-full bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white rounded-lg py-2 font-medium  hover:bg-gradient-to-l transition ${montserratbold.className}`}
               >
                 Register

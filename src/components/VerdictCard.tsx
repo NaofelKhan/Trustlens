@@ -6,25 +6,19 @@ const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 
 
-interface VerdictCardProps {
-  title: string;
-  items: string[];
-  type?: "positive" | "negative" | "neutral";
+interface Details  {
+  Color: string;
+  Dimensions: string;
+  Weight: string;
 }
 
-export default function VerdictCard({ title, items, type = "neutral" }: VerdictCardProps) {
-  const colorMap = {
-    positive: "text-green-600",
-    negative: "text-red-500",
-    neutral: "text-gray-500",
-  };
-
+export default function VerdictCard({ title, items, type }: { title: string; items: Details[]; type: string }) {
   return (
     <div className="flex flex-col gap-2">
-      <h4 className={`font-semibold ${colorMap[type]} ${montserratbold.className}`}>{title}</h4>
-      <ul className={`text-sm text-gray-600 list-disc ml-4 ${montserrat.className}`}>
-        {items.map((item, idx) => (
-          <li key={idx}>{item}</li>
+      <h4 className={`font-semibold ${montserratbold.className}`}>{title}</h4>
+      <ul className={`text-sm text-black list-disc ml-4 ${montserrat.className}`}>
+        {items.map((item: Details, index: number) => (
+          <li key={index}>{JSON.stringify(item)}</li>
         ))}
       </ul>
     </div>
