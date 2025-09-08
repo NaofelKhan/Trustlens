@@ -9,19 +9,24 @@ type AuthContextType = {
   openRegister: () => void;
   closeLoginModal: () => void;
   closeRegisterModal: () => void;
-  login: (email: string, password: string) => void;
-  register: (name: string, username: string, email: string, password: string) => void;
-  user: string | null;
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 };
 
-const fakeUsers: { name: string; username: string; email: string; password: string }[] = [];
+type User ={
+        id: number,
+        name: string,
+        username: string,
+        email: string,
+}
+
 const AuthContext = createContext<AuthContextType | null>(null);
 
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loginModal, setLoginModal] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const openLogin = () => setLoginModal(true);
   const openRegister = () => setRegisterModal(true);
@@ -30,29 +35,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
   const closeRegisterModal = () => {
     setRegisterModal(false);
-  };
-
-  const login = (email: string, password: string) => {
-    const foundUser = fakeUsers.find(
-      (u) => u.email === email && u.password === password
-    );
-
-    if (foundUser) {
-      setUser(foundUser.name);
-      alert("✅ Logged in as " + foundUser.name);
-      closeLoginModal();
-    } else {
-      alert("⚠️ User not found, please register!");
-      setLoginModal(false);
-      setRegisterModal(true);
-    }
-  };
-
-  const register = (name: string, username: string,email: string, password: string) => {
-    fakeUsers.push({ name, username, email, password });
-    setUser(name);
-    alert("🎉 Registered successfully!");
-    closeLoginModal();
   };
 
   return (
@@ -64,9 +46,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         openRegister,
         closeLoginModal,
         closeRegisterModal,
-        login,
-        register,
         user,
+        setUser
       }}
     >
       {children}

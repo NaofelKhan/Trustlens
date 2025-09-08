@@ -1,13 +1,18 @@
+'use client';
+
 import HeroSection from "@/components/HeroSection";
 import Features from "@/components/Features";
 import Stats from "@/components/Stats";
 import CallToAction from "@/components/CallToAction";
 import { Outfit } from "next/font/google";
-
+import AddReview from "@/components/AddReview";
+import { useAuth } from "@/components/AuthContext";
 
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 export default function Home() {
+  const {  user } = useAuth();
+  const product_id = user?.id
   return (
     <>
       <HeroSection />   
@@ -18,6 +23,7 @@ export default function Home() {
         </div>
         <Features />
         <Stats />
+        <AddReview/>
         <CallToAction />
       </section>
     </>

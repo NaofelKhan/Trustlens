@@ -6,10 +6,11 @@ import { schedulePriceCheck } from "@/lib/priceTracker";
 export async function POST(req: Request) {
   try {
     const { product_id, user_email } = await req.json();
+    console.log("Price Alert Request:", product_id, user_email);
 
     // Check if product exists in DB
     const productRes = await pool.query(
-      "SELECT * FROM Product WHERE parent_asin = $1",
+      "SELECT * FROM products WHERE id = $1",
       [product_id]
     );
 
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
 
     // Save price alert subscription
     await pool.query(
-      `INSERT INTO PriceAlerts (product_id, user_email, created_at) 
+      `INSERT INTO pricealerts (product_id, user_email, created_at) 
        VALUES ($1, $2, NOW()) 
        ON CONFLICT DO NOTHING`,
       [product_id, user_email]

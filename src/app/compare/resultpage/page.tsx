@@ -59,17 +59,14 @@ export default function CompareResultPage() {
           <h1 className="text-3xl font-bold mb-6">Comparison Results</h1>
           <RetailerTable product={results1}/>
           <AiInsight />
-          <PriceSummary />
         </div>}
         {results2.length > 0 && <div className="bg-white/15 backdrop-blur-xs shadow-lg w-3/4 rounded-2xl border border-gray-200 flex flex-col items-center pb-20 pt-10">
           <RetailerTable product={results2}/>
           <AiInsight />
-          <PriceSummary />
         </div>}
         {results3.length > 0 && <div className="bg-white/15 backdrop-blur-xs shadow-lg w-3/4 rounded-2xl border border-gray-200 flex flex-col items-center pb-20 pt-10">
           <RetailerTable product={results3}/>
           <AiInsight />
-          <PriceSummary />
         </div>}        
       </section>
     </>

@@ -15,7 +15,7 @@ const outfitbold = Outfit({ subsets: ['latin'], weight: '600' });
 
 
 export default function LoginModal() {
-  const { loginModal, closeLoginModal, login, openRegister, user} = useAuth();
+  const { loginModal, closeLoginModal, openRegister, setUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -29,8 +29,10 @@ export default function LoginModal() {
     });
     const data = await res.json();
     setMessage(data.error || data.message);
+    localStorage.setItem("id", data.user_id);
     if (res.ok) {
-      // Optionally close the modal or redirect the user
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(data.user);
       closeLoginModal();
     }
   };
