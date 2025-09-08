@@ -18,7 +18,6 @@ const navItems = [
 export default function FloatingNavbar() {
   const pathname = usePathname();
   const { openLogin, openRegister, user } = useAuth();
-  console.log(user);
   return(
     <>
       <nav className="fixed top-5 left-1/2 -translate-x-1/2 w-10/12 flex justify-between items-center px-2 py-2 rounded-full bg-white/25 backdrop-blur-xs shadow-lg z-50">

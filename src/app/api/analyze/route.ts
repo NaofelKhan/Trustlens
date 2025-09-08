@@ -21,8 +21,8 @@ export async function GET(req: NextRequest) {
     ); // 👀 test in console
     
     
-    const rev = result.rows.map(p => ({ id: p.id, review: p.reviews }));
-    const sentiments = await analyzeSentiment(rev[0].review);
+    const rev = result.rows.map(p => ({ id: p.id, product_name: p.product_name, review: p.reviews }));
+    const sentiments = await analyzeSentiment(rev[0].product_name, rev[0].review);
     if (sentiments) {
       const cleanedString = sentiments.replace(/```json|```/g, "").trim();
       const sentimentObj = JSON.parse(cleanedString);    

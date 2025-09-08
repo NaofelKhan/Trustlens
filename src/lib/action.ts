@@ -1,15 +1,15 @@
   import { GoogleGenAI } from "@google/genai";
 
-  export async function analyzeSentiment(review: string): Promise<string | undefined> {
+  export async function analyzeSentiment(product_name: string, review: string): Promise<string | undefined> {
 
     try {
         const ai = new GoogleGenAI({});
         async function main() {
             const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
-            contents: review,
+            contents: product_name,
             config: {
-                    systemInstruction: "Run sentiment analysis on the given review and return a JSON object with the following keys: overall_sentiment_label,overall_sentiment_score in percentage, positive, negative, neutral with respective percentages and do not add anything extra and always respond in JSON format must give response in the fixed format",
+                    systemInstruction: "Search other reviews you can get for the product and then run a sentimental analysis on the given and searched reviews  and only give the sentiment as a response return a JSON object with the following keys:overall_sentiment_label,overall_sentiment_score in percentage, positive, negative, neutral with respective percentages stricly maintain JSON object all the times.",
 
             },
         });

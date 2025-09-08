@@ -3,10 +3,10 @@
 
 import AiInsight from '@/components/AiInsight';
 import RetailerTable from '@/components/RetailerTable';
-import PriceSummary from '@/components/PriceSummary';
+
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import { X } from "lucide-react";
 
 type Comparison = {
   product_name: string;
@@ -23,7 +23,7 @@ async function fetchComparisons(query: string) {
   return data.comparisons || [];
 }
 export default function CompareResultPage() {
-    
+  const [visible, setVisible] = useState(true); 
   const searchParams = useSearchParams();
     
     const query1 = searchParams.get("q1") || "";
@@ -55,18 +55,21 @@ export default function CompareResultPage() {
     return (
     <>
       <section className="flex flex-col gap-16 justify-center pb-10 mb-20 items-center">
-        {results1.length > 0 && <div className="bg-white/15 backdrop-blur-xs shadow-lg w-3/4 rounded-2xl border border-gray-200 flex flex-col items-center pb-20 pt-10">
+        { results1.length > 0 && <div className="bg-white/15 backdrop-blur-xs shadow-lg w-3/4 rounded-2xl border border-gray-200 flex flex-col items-center pb-20 pt-10">
+          <button
+              onClick={() => setVisible(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-red-500 transition"
+            >
+              <X className="w-6 h-6" />
+          </button>
           <h1 className="text-3xl font-bold mb-6">Comparison Results</h1>
           <RetailerTable product={results1}/>
-          <AiInsight />
         </div>}
         {results2.length > 0 && <div className="bg-white/15 backdrop-blur-xs shadow-lg w-3/4 rounded-2xl border border-gray-200 flex flex-col items-center pb-20 pt-10">
           <RetailerTable product={results2}/>
-          <AiInsight />
         </div>}
         {results3.length > 0 && <div className="bg-white/15 backdrop-blur-xs shadow-lg w-3/4 rounded-2xl border border-gray-200 flex flex-col items-center pb-20 pt-10">
           <RetailerTable product={results3}/>
-          <AiInsight />
         </div>}        
       </section>
     </>

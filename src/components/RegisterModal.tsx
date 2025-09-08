@@ -21,7 +21,7 @@ const outfitbold = Outfit({ subsets: ['latin'], weight: '600' });
 
 export default function RegisterModal() {
 
-  const { registerModal, openLogin, closeRegisterModal, register } = useAuth();
+  const { registerModal, openLogin, closeRegisterModal} = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

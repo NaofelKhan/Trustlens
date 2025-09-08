@@ -21,7 +21,6 @@ export default function LoginModal() {
   const [message, setMessage] = useState("");
   const handleLoginup = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password});
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -33,20 +33,6 @@ export default function AlertsAndSettings() {
                     <span className="text-xs text-[#797979]">2 hours ago</span>
                 </div>
             </div>
-
-            <div className="p-3 rounded-xl border border-black bg-white/10">
-              <p className="font-medium text-black">MacBook Air M3</p>
-              <p className="text-sm text-[#797979]">
-                Target price reached $1099
-              </p>
-              <span className="text-xs text-[#797979]">1 day ago</span>
-            </div>
-
-            <div className="p-3 rounded-xl border border-black bg-white/10">
-              <p className="font-medium text-black">Sony WH-1000XM5</p>
-              <p className="text-sm text-[#797979]">Price increased by 15%</p>
-              <span className="text-xs text-[#797979]">3 days ago</span>
-            </div>
           </div>
         </div>
 
@@ -69,33 +55,6 @@ export default function AlertsAndSettings() {
                 className="toggle-checkbox"
               />
             </div>
-
-            {/* Push Notification */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Smartphone size={18} /> <span>Push Notification</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={pushAlerts}
-                onChange={() => setPushAlerts(!pushAlerts)}
-                className="toggle-checkbox"
-              />
-            </div>
-
-            {/* SMS Alerts */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <MessageSquare size={18} /> <span>SMS Alerts</span>
-              </div>
-              <input
-                type="checkbox"
-                checked={smsAlerts}
-                onChange={() => setSmsAlerts(!smsAlerts)}
-                className="toggle-checkbox"
-              />
-            </div>
-
             {/* Dropdown */}
             <div>
               <label className="text-sm font-medium">Alert Frequency</label>

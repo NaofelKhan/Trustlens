@@ -14,18 +14,18 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '500' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 type score_type = {
-  negative: string;
-  neutral: string;
-  overall_sentiment_label: string;
-  overall_sentiment_score: string;
-  positive: string;}
+  negative: string |undefined;
+  neutral: string |undefined;
+  overall_sentiment_label: string |undefined;
+  overall_sentiment_score: string |undefined;
+  positive: string |undefined;}
 
 
 export default function SentimentAnalysis({ product }: { product: score_type }) {
   const data = [
-    { name: "Positive", value: 50, color: "#108F80" },
-    { name: "Neutral", value: 40, color: "#701CF5" },
-    { name: "Negative", value: 10, color: "#F50057" },
+    { name: "Positive", value: product.positive, color: "#78C841" },
+    { name: "Neutral", value: product.neutral, color: "#FF9B2F" },
+    { name: "Negative", value: product.negative, color: "#FB4141" },
   ];
   return (
     <section className="flex justify-center pb-10 mt-10">
@@ -52,7 +52,7 @@ export default function SentimentAnalysis({ product }: { product: score_type }) 
               </ResponsiveContainer>
               {/* Legend + score */}
               <div>
-                  <div className={`flex items-center justify-between mb-4 bg-white rounded-lg py-6 px-3 shadow-sm ${montserratbold.className}`}>
+                  <div className={`flex items-center justify-between mb-4 rounded-lg py-6 px-3 shadow-sm ${montserratbold.className}`}>
                     <span className="font-medium">Positive</span>
                     <span className="font-medium">{product.positive}</span>
                   </div>
@@ -64,11 +64,17 @@ export default function SentimentAnalysis({ product }: { product: score_type }) 
                     <span className="font-medium">Negative</span>
                     <span className="font-medium">{product.negative}</span>
                   </div>
-                  <p className="text-sm text-gray-700">Overall Sentiment Score</p>
-                  <p className="text-xl font-bold text-purple-700">
-                    {product.overall_sentiment_label}
-                    {product.overall_sentiment_score}
-                  </p>
+                  <div className={`flex flex-col justify-between mb-4 bg-purple-50 border-1 border-purple-200 rounded-lg py-6 px-3 ${montserratbold.className}`}>
+                    <p className="text-sm text-gray-700">Overall Sentiment Score</p>
+                    <div className='flex justify-between'>
+                      <p className="text-xl font-bold text-purple-700">
+                        {product.overall_sentiment_label}
+                      </p>
+                      <p className="text-xl font-bold text-purple-700">
+                        {`${product.overall_sentiment_score}%`}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
           </div>

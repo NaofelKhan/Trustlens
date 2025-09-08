@@ -1,13 +1,38 @@
 "use client";
 import {Outfit, Montserrat} from 'next/font/google';
 import { Mail, Phone, MapPin, HelpCircle } from "lucide-react";
-
+import { useState } from "react";
 
 
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const outfit = Outfit({ subsets: ['latin'], weight: '500' });
 export default function ContactBento() {
+    const [formData, setFormData] = useState({
+    full_name: "",
+    email: "",
+    issue_type: "",
+    subject: "",
+    message: "",
+  });
+
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/contactus", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    alert(data.message || data.error);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br p-6">
       <div className="max-w-6xl mx-auto grid gap-6">
@@ -71,11 +96,12 @@ export default function ContactBento() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
+                  name="full_name" onChange={handleChange}
                   placeholder="Full Name"
                   className={`w-full rounded-lg bg-white/10 border border-white/30 p-3 text-sm focus:outline-none focus:ring-1 focus:ring-purple-400 shadow-md ${montserrat.className}`}
                 />
                 <input
-                  type="email"
+                  type="email" name="email" onChange={handleChange}
                   placeholder="Email Address"
                   className={`w-full rounded-lg bg-white/10 border border-white/30 p-3 text-sm focus:outline-none focus:ring-1 focus:ring-purple-400 shadow-md ${montserrat.className}`}
                 />
@@ -90,18 +116,18 @@ export default function ContactBento() {
 
               <input
                 type="text"
-                placeholder="Subject"
+                placeholder="Subject" name="subject" onChange={handleChange}
                 className={`w-full rounded-lg bg-white/10 border border-white/30 p-3 text-sm focus:outline-none focus:ring-1 focus:ring-purple-400 shadow-md ${montserrat.className}`}
               />
 
               <textarea
                 placeholder="Message"
-                rows={4}
+                rows={4} name="message" onChange={handleChange}
                 className={`w-full rounded-lg bg-white/10 border border-white/30 p-3 text-sm focus:outline-none focus:ring-1 focus:ring-purple-400 shadow-md ${montserrat.className}`}
               ></textarea>
 
               <button
-                type="submit"
+                type="submit"  onClick={handleSubmit}
                 className={`w-full py-3 rounded-lg bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white font-semibold hover:opacity-90 transition ${montserrat.className}`}
               >
                 Send a message

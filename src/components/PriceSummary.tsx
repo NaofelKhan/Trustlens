@@ -16,7 +16,7 @@ const priceData = [
   { month: "Apr", price: 400 },
 ];
 
-
+import { useState } from "react";
 
 type Data ={
     product_name: string,
@@ -26,12 +26,31 @@ type Data ={
     retailer_name: string,
 }
 export default function PriceSummary({product_name,price,discounted_price,brand_name,retailer_name}:Data) {
+    const [alerts, setAlerts] = useState<any[]>([]);
+    const handleDeleteAlert = async (alert_id: number) => {
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+        const res = await fetch("/api/pricealert/delete", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            alert_id,
+            user_email: user.email,
+          }),
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        if (res.ok) {
+          // Refresh state to remove alert from UI
+          setAlerts((prev) => prev.filter((a) => a.alert_id !== alert_id));
+        }
+}
     const originalPrice = parseFloat(price);
     const discountedPrice = parseFloat(discounted_price);
     // Drop amount
     const dropAmount = originalPrice - discountedPrice;
-    // Drop percentage (how much it dropped relative to original)
-    const dropPercentage = ((dropAmount / originalPrice) * 100).toFixed(2);
     // Discount percentage (savings relative to original)
     const discountPercentage = ((1 - discountedPrice / originalPrice) * 100).toFixed(2);
   return (
@@ -52,9 +71,6 @@ export default function PriceSummary({product_name,price,discounted_price,brand_
           </p>
         </div>
         <div className="mt-3 flex flex-col items-end w-full">
-          <button className="px-8 py-1 mb-10 rounded-2xl text-white font-normal bg-gradient-to-r from-[#701CF5] to-[#108F80] hover:opacity-90 transition shadow-md">
-            Close Price Alert
-          </button>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={priceData}>
               <CartesianGrid strokeDasharray="3 3" />

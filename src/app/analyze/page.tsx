@@ -47,7 +47,7 @@ export default function AnalyzePage() {
             <ProductTrends features={result.features} descriptions={result.description} />
             <PriceComparison prices={comresults} loading={comloading} />
             <UserReviews rev={reviews} load={revloading} />
-            <AIVerdict details={result.details} />
+            <AIVerdict product_name={result.product_name} details={result.details} />
           </div>
         ))}
       </section>

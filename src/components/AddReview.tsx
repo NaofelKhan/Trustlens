@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import GradientText from './GradientText';
 
 export default function AddReview() {
   const [product_name, setProduct_name] = useState("");
@@ -53,8 +53,15 @@ export default function AddReview() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow rounded-2xl mt-6">
-      <h2 className="text-xl font-bold mb-4">Add a Review</h2>
+    <div className="w-1/2 mx-auto p-6 bg-purple-50 rounded-2xl border-2 border-purple-100 mt-6">
+      <GradientText
+        colors={["#701CF5", "#118D81","#701CF5", "#118D81","#701CF5"]}
+        animationSpeed={3}
+        showBorder={false}
+        className={`custom-class mb-10 text-2xl`}
+      >
+        Join the conversation
+      </GradientText>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
@@ -100,7 +107,7 @@ export default function AddReview() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:opacity-50"
+          className="w-full bg-gradient-to-r from-[#701CF5] to-[#108F80] text-white py-2 px-4 rounded-lg transition disabled:opacity-50"
         >
           {loading ? "Submitting..." : "Submit Review"}
         </button>

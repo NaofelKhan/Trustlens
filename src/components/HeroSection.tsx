@@ -68,7 +68,7 @@ export default function HeroSection() {
       {/* Suggestions */}
       <div className={`flex flex-wrap justify-center gap-3 items-center ${montserrat.className}`}>
         <h2 className="text-lg text-black">Popular Searches:</h2>
-        {["Next.js", "Tailwind CSS", "React", "TypeScript", "AI Apps"].map(
+        {["GoPro Hero11 Black", "Sony WH-1000XM5", "Amazon Echo Show 10", "Garmin Fenix 7 Solar"].map(
           (item) => (
               <button
               key={item}
