@@ -1,5 +1,4 @@
 import { Outfit,Montserrat } from "next/font/google";
-const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 const outfitbold = Outfit({ subsets: ['latin'], weight: '700' });
 const montserrat = Montserrat({ subsets: ['latin'], weight: '400' });
 import { useRouter } from "next/navigation";

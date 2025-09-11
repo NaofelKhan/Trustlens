@@ -1,7 +1,6 @@
 'use client';
 
 
-import AiInsight from '@/components/AiInsight';
 import RetailerTable from '@/components/RetailerTable';
 
 import { useSearchParams } from "next/navigation";

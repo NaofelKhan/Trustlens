@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Bell, Mail, Smartphone, MessageSquare } from "lucide-react";
+import { Bell, Mail} from "lucide-react";
 import {Montserrat,Outfit} from 'next/font/google'
 
 
@@ -11,8 +11,6 @@ const outfit = Outfit({ subsets: ['latin'], weight: '500' });
 
 export default function AlertsAndSettings() {
   const [emailAlerts, setEmailAlerts] = useState(true);
-  const [pushAlerts, setPushAlerts] = useState(false);
-  const [smsAlerts, setSmsAlerts] = useState(true);
 
   return (
     <div className="mt-40 flex items-center justify-cente p-6">

@@ -2,13 +2,12 @@
 
 
 
-import { Outfit,Montserrat } from "next/font/google";
+import { Outfit} from "next/font/google";
 import AlertsAndSettings from "./AlertsAndSettings";
 import GradientText from "./GradientText";
 import { SquarePlus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-const montserratbold = Montserrat({ subsets: ['latin'], weight: '400' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 const PriceAlertHero = () => {

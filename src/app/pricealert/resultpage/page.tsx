@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 
 export default function PriceAlertResultPage() {
   const [data, setData] = useState<any>(null);
-  const [alerts, setAlerts] = useState<any[]>([]);
   const [productId, setProductId] = useState<number | null>(null);
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";

@@ -11,7 +11,7 @@ type Price = {
 };
 
 
-export default function PriceComparison({prices,loading}:{prices:Price[],loading:boolean}) {
+export default function PriceComparison({prices}:{prices:Price[]}) {
   return (
     console.log(prices),
     <section className="flex justify-center pb-10">

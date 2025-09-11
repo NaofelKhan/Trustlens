@@ -1,8 +1,7 @@
 import ReviewCard from "./ReviewCard";
-import {Montserrat,Outfit} from 'next/font/google'
+import {Outfit} from 'next/font/google'
 
-const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
-const montserratbold = Montserrat({ subsets: ['latin'], weight: '400' });
+
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 type Review = {

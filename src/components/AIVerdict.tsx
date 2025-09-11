@@ -1,5 +1,4 @@
 import {Montserrat,Outfit} from 'next/font/google'
-import { useEffect, useState } from 'react';
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '600' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
@@ -10,7 +9,7 @@ type Details = {
   Weight: string;
 }
 
-export default function AIVerdict({product_name,details}:{  product_name:string,details:Details}) {
+export default function AIVerdict({details}:{  product_name:string,details:Details}) {
   return (
     <section className="flex justify-center pb-10">
       <div className="my-12 p-6 rounded-2xl border border-gray-300 bg-white shadow-sm w-2/3">

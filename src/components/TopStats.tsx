@@ -11,12 +11,7 @@ type Stat = {
   value: string | number;
 };
 
-const stats: Stat[] = [
-  { label: "Total Reviews", value: "4,325" },
-  { label: "Average Rating", value: "3.7" },
-  { label: "Price Range", value: "$392 - $647" },
-  { label: "Accuracy", value: "84%" },
-];
+
 
 
 

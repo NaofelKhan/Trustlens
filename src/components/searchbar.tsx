@@ -3,8 +3,8 @@
 
 import { Search, SquarePlus } from "lucide-react";
 import GradientText from "./GradientText";
-import {Montserrat,Outfit} from 'next/font/google'
-import { useState, useEffect } from "react";
+import {Montserrat} from 'next/font/google'
+import { useState} from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
