@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
+
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '500' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 type score_type = {
