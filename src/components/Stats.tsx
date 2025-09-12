@@ -12,8 +12,8 @@ export default function Stats() {
       <div className="w-3/4 mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 text-center">
         {stats.map((stat, idx) => (
           <div key={idx}>
-            <h3 className={`text-7xl font-extrabold ${outfitbold.className}`}>{stat.value}</h3>
-            <p className={`mt-2 text-sm uppercase tracking-wide text-purple-100 ${outfitbold.className}`}>
+            <h3 className={`text-7xl font-extrabold`}>{stat.value}</h3>
+            <p className={`mt-2 text-sm uppercase tracking-wide text-purple-100`}>
               {stat.label}
             </p>
           </div>

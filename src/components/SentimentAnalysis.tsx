@@ -13,15 +13,16 @@ import {
 
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '500' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
-type score_type = {
-  negative: string |undefined;
-  neutral: string |undefined;
-  overall_sentiment_label: string |undefined;
-  overall_sentiment_score: string |undefined;
-  positive: string |undefined;}
+type Sentiment = {
+  negative: number;
+  neutral: number;
+  overall_sentiment_label: string;
+  overall_sentiment_score: string;
+  positive: number;
+};
 
 
-export default function SentimentAnalysis({ product }: { product: score_type }) {
+export default function SentimentAnalysis({ product }: { product: Sentiment }) {
   const data = [
     { name: "Positive", value: product.positive, color: "#78C841" },
     { name: "Neutral", value: product.neutral, color: "#FF9B2F" },

@@ -12,12 +12,40 @@ import { useEffect, useState } from "react";
 import useCompare from "@/components/ComparePrices";
 import ReviewSearch from "@/components/GetReviews";
 
+type Details = {
+  Color: string;
+  Dimensions: string;
+  Weight: string;
+};
+
+type Sentiment = {
+  negative: number;
+  neutral: number;
+  overall_sentiment_label: string;
+  overall_sentiment_score: string;
+  positive: number;
+};
+
+
+
+interface fectchedData {
+  description: string;
+  details: Details;
+  features: string;
+  id : string;
+  price: string;
+  product_name: string;
+  rating: string;
+  reviews: string;
+  sentiments: Sentiment;
+}
+
 export default function AnalyzePage() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<fectchedData[]>([]);
   const [loading, setLoading] = useState(false);
-  const { comresults, comloading } = useCompare(query);
+  const { comresults } = useCompare(query);
   const { reviews, revloading } = ReviewSearch(query);
   useEffect(() => {
     async function fetchResults() {
@@ -45,7 +73,7 @@ export default function AnalyzePage() {
             <TopStats title={result.product_name} rating={result.rating} price={result.price} />
             <SentimentAnalysis product={result.sentiments} />
             <ProductTrends features={result.features} descriptions={result.description} />
-            <PriceComparison prices={comresults} loading={comloading} />
+            <PriceComparison prices={comresults} />
             <UserReviews rev={reviews} load={revloading} />
             <AIVerdict product_name={result.product_name} details={result.details} />
           </div>

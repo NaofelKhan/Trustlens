@@ -1,11 +1,10 @@
 import { Search, TrendingUp, ShoppingCart, Bell } from "lucide-react";
-import {Montserrat,Outfit} from 'next/font/google'
+import {Montserrat} from 'next/font/google'
 
 
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '400' });
-const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 const features = [
   {
@@ -44,8 +43,8 @@ export default function Features() {
             className="rounded-xl border border-gray-200 px-8 py-16 shadow-sm hover:shadow-md transition bg-white text-center"
           >
             <div className="flex justify-center mb-4">{feature.icon}</div>
-            <h3 className={`text-lg font-semibold mb-2 ${montserratbold.className}`}>{feature.title}</h3>
-            <p className={`text-sm text-gray-600 ${montserrat.className}`}>{feature.description}</p>
+            <h3 className={`text-lg font-semibold mb-2 `}>{feature.title}</h3>
+            <p className={`text-sm text-gray-600 `}>{feature.description}</p>
           </div>
         ))}
       </div>

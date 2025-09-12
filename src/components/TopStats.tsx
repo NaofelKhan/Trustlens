@@ -6,17 +6,11 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: '300' });
 const montserratbold = Montserrat({ subsets: ['latin'], weight: '400' });
 const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
-type Stat = {
-  label: string;
-  value: string | number;
-};
 
 
 
 
-
-
-export default function TopStats({ title,rating,price }: { title: string, rating: number, price: number }) {
+export default function TopStats({ title,rating,price }: { title: string, rating: string, price: string }) {
   return (
     <div className="w-full place-items-center pt-10">
       <h2 className={`pb-8 mb-4 ${outfit.className} text-3xl`}>Analysis Results for "{title}"</h2>
