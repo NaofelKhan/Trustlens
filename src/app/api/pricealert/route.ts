@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
 
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const res = await pool.query("SELECT * FROM PriceAlerts");
     return NextResponse.json({ success: true, alerts: res.rows });

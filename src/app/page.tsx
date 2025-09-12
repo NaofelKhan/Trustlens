@@ -4,10 +4,8 @@ import HeroSection from "@/components/HeroSection";
 import Features from "@/components/Features";
 import Stats from "@/components/Stats";
 import CallToAction from "@/components/CallToAction";
-import { Outfit } from "next/font/google";
 import AddReview from "@/components/AddReview";
 
-const outfit = Outfit({ subsets: ['latin'], weight: '400' });
 
 export default function Home() {
   return (

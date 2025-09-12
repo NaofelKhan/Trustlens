@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     
     
     const rev = result.rows.map(p => ({ id: p.id, product_name: p.product_name, review: p.reviews }));
-    const sentiments = await analyzeSentiment(rev[0].product_name, rev[0].review);
+    const sentiments = await analyzeSentiment(rev[0].product_name);
     if (sentiments) {
       const cleanedString = sentiments.replace(/```json|```/g, "").trim();
       const sentimentObj = JSON.parse(cleanedString);    
@@ -33,9 +33,11 @@ export async function GET(req: NextRequest) {
       console.error("Error: sentiments is undefined");
       return NextResponse.json({ error: "Sentiment analysis failed Because of the token limit" }, { status: 500 });
     }
-  } catch (error: any) {
-    console.error("Search error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } 
+  
+  catch (error) {
+  console.error("Search error:", error);
+  return NextResponse.json({ error }, { status: 500 });
   }
 }
 

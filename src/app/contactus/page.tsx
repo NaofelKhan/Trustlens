@@ -15,7 +15,7 @@ export default function ContactUsPage() {
          Contact Us
         </h1>
         <p className={`text-md max-w-2xl ${montserrat.className} text-[#797979]`}>
-         Have a question, complaint, or feedback about our service? We're here to help and improve your experience.
+         {"Have a question, complaint, or feedback about our service? We're here to help and improve your experience."}
         </p>
       </div>
     </section>

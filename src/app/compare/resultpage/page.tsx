@@ -22,7 +22,6 @@ async function fetchComparisons(query: string) {
   return data.comparisons || [];
 }
 export default function CompareResultPage() {
-  const [visible, setVisible] = useState(true); 
   const searchParams = useSearchParams();
     
     const query1 = searchParams.get("q1") || "";
@@ -50,13 +49,12 @@ export default function CompareResultPage() {
       if (query3) fetchComparisons(query3).then(setResults3);
     }, [query3]);
   
-      console.log(results1, results2, results3);
+      //console.log(results1, results2, results3);
     return (
     <>
       <section className="flex flex-col gap-16 justify-center pb-10 mb-20 items-center">
         { results1.length > 0 && <div className="bg-white/15 backdrop-blur-xs shadow-lg w-3/4 rounded-2xl border border-gray-200 flex flex-col items-center pb-20 pt-10">
           <button
-              onClick={() => setVisible(false)}
               className="absolute top-4 right-4 text-gray-500 hover:text-red-500 transition"
             >
               <X className="w-6 h-6" />

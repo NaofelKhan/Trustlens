@@ -44,13 +44,11 @@ export default function AnalyzePage() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [results, setResults] = useState<fectchedData[]>([]);
-  const [loading, setLoading] = useState(false);
   const { comresults } = useCompare(query);
   const { reviews, revloading } = ReviewSearch(query);
   useEffect(() => {
     async function fetchResults() {
       if (!query) return;
-      setLoading(true);
       try{
         const res = await fetch(`/api/analyze?q=${encodeURIComponent(query)}`);
         const data = await res.json();
@@ -58,8 +56,7 @@ export default function AnalyzePage() {
         setResults(data ? [data] : []); // Wrap data in an array if it's a single object
       } catch(error)  {
         console.error("Fetch error:", error);
-      } finally {
-      setLoading(false);}}
+      } }
     fetchResults();
   }, [query]);
   

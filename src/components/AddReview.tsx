@@ -35,15 +35,11 @@ export default function AddReview() {
         }),
       });
 
-      const data = await res.json();
-
       if (res.ok) {
         setMessage("✅ Review added successfully!");
         setTitle("");
         setReview("");
         setRating(5);
-      } else {
-        setMessage(`❌ Error: ${data.error || "Something went wrong"}`);
       }
     } catch (err) {
       setMessage("❌ Failed to submit review.");

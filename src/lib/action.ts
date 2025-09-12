@@ -1,6 +1,6 @@
   import { GoogleGenAI } from "@google/genai";
 
-  export async function analyzeSentiment(product_name: string, review: string): Promise<string | undefined> {
+  export async function analyzeSentiment(product_name: string): Promise<string | undefined> {
 
     try {
         const ai = new GoogleGenAI({});
